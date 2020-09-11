@@ -235,10 +235,10 @@ public class DandriaBot extends TelegramLongPollingBot {
 			ArrayList<String> list = null;
 			ArrayList<String> listid = null; // In listId we store all id from database string
 			try {
-				String url = "jdbc:mysql://localhost:3306/recipes?useSSL=false&serverTimezone=" // Open connection
+				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_a30e7fd2176c426?useSSL=false&serverTimezone=" // Open connection
 						+ "UTC&useLegacyDatetimeCode=false?characterEncoding=utf8";
-				String username = "root";
-				String password = "root";
+				String username = "b61d5817452261";
+				String password = "156b12cf7c4e28b";
 				Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 
 				try (Connection conn = DriverManager.getConnection(url, username, password)) {
