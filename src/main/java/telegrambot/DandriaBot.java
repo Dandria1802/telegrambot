@@ -63,6 +63,7 @@ public class DandriaBot extends TelegramLongPollingBot {
 			}
 		}
 		while (!msg.equals(startedMsg)) {
+			if (!msg.equals(stop)) {
 			if (dataFromUser.size() < 5) {
 				String info2 = "Введён ингридиент  " + " * " + msg + " * "; // Because we cant check �orrectness users
 																			// data
@@ -81,6 +82,7 @@ public class DandriaBot extends TelegramLongPollingBot {
 					msg = msg.replaceAll("[,]", "");
 					msg = msg.trim();
 				}
+			}
 				dataFromUser.add(msg);
 				System.out.println(dataFromUser);
 				break;
@@ -228,21 +230,27 @@ public class DandriaBot extends TelegramLongPollingBot {
 				String mp = invertedKeyValue.get(dataFromUser.get(i)).toString(); // Here i get key from inverted
 																					// multimap, change to string "mp"
 				String delBrack = mp.substring(1, mp.length() - 1); // Delete brackets
-				dataToDB.add(delBrack); // Add clear number(that is id of ingridient in DataBase) to array dataToDb
+				dataToDB.add(delBrack);
+				System.out.println(dataToDB);// Add clear number(that is id of ingridient in DataBase) to array dataToDb
 			}
 			dataFromUser.clear(); // Clear array dataFromUser
 			String query = "select recipe, id1, id2, id3, id4, id5, id6, id7, id8, id9, url from recipes_table";
 			ArrayList<String> list = null;
 			ArrayList<String> listid = null; // In listId we store all id from database string
 			try {
+				System.out.println("мы попытались подключиться");
 				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_a30e7fd2176c426?useSSL=false&serverTimezone=" // Open connection
 						+ "UTC&useLegacyDatetimeCode=false?characterEncoding=utf8";
-				String username = "b61d5817452261";
+				System.out.println("url");
+				String name = "b61d5817452261";
+				System.out.println("name");
 				String password = "156b12cf7c4e28b";
-				Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-
-				try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				System.out.println("pass");
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				System.out.println("мы подключились");
+				try (Connection conn = DriverManager.getConnection(url, name, password)) {
 					try {
+						System.out.println("Подключились");
 						list = new ArrayList<String>();
 						listid = new ArrayList<String>();
 						PreparedStatement st = null;
@@ -294,12 +302,12 @@ public class DandriaBot extends TelegramLongPollingBot {
 					}
 				}
 			} catch (Exception ex) {
-				System.out.println("Connection failed...");
+				ex.printStackTrace();
 			}
 
 		}
 
-		return "null";
+		return "";
 
 	}
 
