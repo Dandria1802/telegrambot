@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>telegrambot</groupId>
+  <artifactId>telegrambot</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>telegrambot</name>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+      <scope>test</scope>
+    </dependency>
+      <dependency>
+  <groupId>org.telegram</groupId>
+        <artifactId>telegrambots</artifactId>
+        <version>4.9.1</version>
+   </dependency> 
+   <dependency>
+    <groupId>com.google.guava</groupId>
+    <artifactId>guava</artifactId>
+    <version>29.0-jre</version>
+</dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+    <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+          <artifactId>appassembler-maven-plugin</artifactId>
+          <version>1.1.1</version>
+          <configuration>
+            <assembleDirectory>target</assembleDirectory>
+            <programs>
+                <program>
+                    <mainClass>telegrambot.Starter</mainClass>
+                    <name>worker</name>
+                </program>
+                <program>
+                    <mainClass>telegrambot.DandriaBot</mainClass>
+                    <name>DandriaBot</name>
+                </program>
+            </programs>
+          </configuration>
+          <executions>
+              <execution>
+                  <phase>package</phase><goals><goal>assemble</goal></goals>
+              </execution>
+          </executions>
+      </plugin>
+    </plugins>
+  </build>
+ 
+</project>
