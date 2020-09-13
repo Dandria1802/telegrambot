@@ -246,7 +246,7 @@ public class DandriaBot extends TelegramLongPollingBot {
 				System.out.println("name");
 				String password = "156b12cf7c4e28b";
 				System.out.println("pass");
-				Class.forName("com.mysql.cj.jdbc.Driver");
+				Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 				System.out.println("мы подключились");
 				try (Connection conn = DriverManager.getConnection(url, name, password)) {
 					try {
