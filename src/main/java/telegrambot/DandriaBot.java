@@ -239,12 +239,12 @@ public class DandriaBot extends TelegramLongPollingBot {
 			ArrayList<String> listid = null; // In listId we store all id from database string
 			try {
 				System.out.println("мы попытались подключиться");
-				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_a30e7fd2176c426?useSSL=false&serverTimezone=" // Open connection
+				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_336c0c521e14f61?reconnect=true?useSSL=false&serverTimezone=" // Open connection
 						+ "UTC&useLegacyDatetimeCode=false?characterEncoding=utf8";
 				System.out.println("url");
-				String name = "b61d5817452261";
+				String name = "b7b59ae2c40612";
 				System.out.println("name");
-				String password = "156b12cf7c4e28b";
+				String password = "fd2f0afd";
 				System.out.println("pass");
 				Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 				System.out.println("мы подключились");
