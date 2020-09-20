@@ -317,7 +317,7 @@ public class DandriaBot extends TelegramLongPollingBot {
 
 	@Override
 	public String getBotToken() {
-		return "1293235080:AAGnS58hmQNAHBu5zAwHZ0wGSm9A6VXfjBg";
+		return "15080:AAGnS58hmQNAHBu5zAwHZ0wGSm9A6VXfjBg";
 	}
 }
 
