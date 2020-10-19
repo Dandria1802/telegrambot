@@ -18,8 +18,8 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.Multimaps;
 
 public class DandriaBot extends TelegramLongPollingBot {
-	List<String> dataFromUser = new ArrayList<String>(); // We store raw data from user in this array.
-	ArrayList<String> dataToDB = new ArrayList<String>(); // We store edited data from user in this array.
+	List<String> dataFromUser = new ArrayList<String>(); 
+	ArrayList<String> dataToDB = new ArrayList<String>();
 	long chat_id;
 
 	public void onUpdateReceived(Update update) {
@@ -36,13 +36,13 @@ public class DandriaBot extends TelegramLongPollingBot {
 	}
 
 	public String getMessage(String msg) {
-		String startedMsg = "/start"; // If user launches bot
+		String startedMsg = "/start"; 
 		String stop = "/reset";
 		if (msg.equals(stop)) {
 			dataFromUser.clear();
 			dataToDB.clear();			
 		}
-		if (msg.equals(startedMsg)) { // We give instructions
+		if (msg.equals(startedMsg)) { 
 			String i = "Каждый";
 			String in = "ОТДЕЛЬНЫМ";
 			String inf = "СООБЩЕНИЕМ";
@@ -59,13 +59,13 @@ public class DandriaBot extends TelegramLongPollingBot {
 				execute(sendMessage4);
 			} catch (TelegramApiException e) {
 
-				e.printStackTrace(); // Instructions sent
+				e.printStackTrace(); 
 			}
 		}
 		while (!msg.equals(startedMsg)) {
 			if (!msg.equals(stop)) {
 			if (dataFromUser.size() < 5) {
-				String info2 = "Введён ингридиент  " + " * " + msg + " * "; // Because we cant check �orrectness users
+				String info2 = "Введён ингридиент  " + " * " + msg + " * "; 
 																			// data
 				SendMessage sendMessage1 = new SendMessage().setChatId(chat_id).setText(info2);
 				try {
@@ -74,8 +74,8 @@ public class DandriaBot extends TelegramLongPollingBot {
 
 					e.printStackTrace();
 				}
-				msg = msg.toLowerCase(); // To lower case
-				if (msg.contains(",")) { // Delete incorrect symbols
+				msg = msg.toLowerCase();
+				if (msg.contains(",")) { 
 					msg = msg.replaceAll("\\s*,\\s*", "");
 				}
 				if (msg.contains(" ")) {
@@ -89,8 +89,8 @@ public class DandriaBot extends TelegramLongPollingBot {
 			}
 			break;
 		}
-		if (dataFromUser.size() == 5) {                                     // When we have 5 ingridients
-			Multimap<String, String> keyValue = ArrayListMultimap.create(); // Create list where in one key (basket)
+		if (dataFromUser.size() == 5) {                                     
+			Multimap<String, String> keyValue = ArrayListMultimap.create(); 
 																			// store several values
 			keyValue.put("0", "хлеб");
 			keyValue.put("0", "хлеб белый");
@@ -223,34 +223,26 @@ public class DandriaBot extends TelegramLongPollingBot {
 			keyValue.put("58", "персики");
 			keyValue.put("59", "кефир");
 			Multimap<String, String> invertedKeyValue = Multimaps.invertFrom(keyValue,
-					ArrayListMultimap.<String, String>create());
-			// Because i couldnt get key from multimap(keyValue), i invert my
-			// multimap(keyValue)
+					ArrayListMultimap.<String, String>create());			
 			for (int i = 0; i <= dataFromUser.size() - 1; i++) { // ;)
-				String mp = invertedKeyValue.get(dataFromUser.get(i)).toString(); // Here i get key from inverted
+				String mp = invertedKeyValue.get(dataFromUser.get(i)).toString(); 
 																					// multimap, change to string "mp"
-				String delBrack = mp.substring(1, mp.length() - 1); // Delete brackets
+				String delBrack = mp.substring(1, mp.length() - 1); 
 				dataToDB.add(delBrack);
-				System.out.println(dataToDB);// Add clear number(that is id of ingridient in DataBase) to array dataToDb
+				System.out.println(dataToDB);
 			}
-			dataFromUser.clear(); // Clear array dataFromUser
+			dataFromUser.clear(); 
 			String query = "select recipe, id1, id2, id3, id4, id5, id6, id7, id8, id9, url from recipes_table";
-			ArrayList<String> list = null;
-			ArrayList<String> listid = null; // In listId we store all id from database string
+			List<String> list = null;
+			List<String> listid = null; 
 			try {
-				System.out.println("мы попытались подключиться");
 				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_336c0c521e14f61?reconnect=true?useSSL=false&serverTimezone=" // Open connection
 						+ "UTC&useLegacyDatetimeCode=false?characterEncoding=utf8";
-				System.out.println("url");
 				String name = "b7b59ae2c40612";
-				System.out.println("name");
 				String password = "fd2f0afd";
-				System.out.println("pass");
 				Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-				System.out.println("мы подключились");
-				try (Connection conn = DriverManager.getConnection(url, name, password)) {
+							try (Connection conn = DriverManager.getConnection(url, name, password)) {
 					try {
-						System.out.println("Подключились");
 						list = new ArrayList<String>();
 						listid = new ArrayList<String>();
 						PreparedStatement st = null;
