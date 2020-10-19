@@ -19,7 +19,7 @@ import com.google.common.collect.Multimaps;
 
 public class DandriaBot extends TelegramLongPollingBot {
 	List<String> dataFromUser = new ArrayList<String>(); 
-	ArrayList<String> dataToDB = new ArrayList<String>();
+	List<String> dataToDB = new ArrayList<String>();
 	long chat_id;
 
 	public void onUpdateReceived(Update update) {
@@ -32,8 +32,8 @@ public class DandriaBot extends TelegramLongPollingBot {
 
 		} catch (TelegramApiException e) {
 			e.printStackTrace();
-		}
-	}
+		    }
+	                                             }
 
 	public String getMessage(String msg) {
 		String startedMsg = "/start"; 
@@ -82,7 +82,7 @@ public class DandriaBot extends TelegramLongPollingBot {
 					msg = msg.replaceAll("[,]", "");
 					msg = msg.trim();
 				}
-			}
+			        }
 				dataFromUser.add(msg);
 				System.out.println(dataFromUser);
 				break;
