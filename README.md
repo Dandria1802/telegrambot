@@ -11,3 +11,4 @@ lists and put a "key" to another list - "dataToDb"
 - I have a screenshot how my database looks like - recipes.jpg (pictures is also in the repository).
 7. Bot compares each line (recipe) in database with "dataToDb", if line contains all ingredients from "dataToDb",
 bot returns url of recipe.
+Sorry for my english:)
