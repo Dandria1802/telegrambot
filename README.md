@@ -1,4 +1,5 @@
 # This is my first pet project - telegrambot. Here is the description :
+-Sorry for my English:)
 1. When a bot starts, user sees the instruction how to use an app - each ingredient must be a separate message.
 2. Each massage from user mirroed by bot.
 3. Each ingredient is located to ArrayList "dataFromUser".
@@ -11,4 +12,4 @@ lists and put a "key" to another list - "dataToDb"
 - I have a screenshot how my database looks like - recipes.jpg (pictures is also in the repository).
 7. Bot compares each line (recipe) in database with "dataToDb", if line contains all ingredients from "dataToDb",
 bot returns url of recipe.
-8.Sorry for my english:)
+
