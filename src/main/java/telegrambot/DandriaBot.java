@@ -92,7 +92,7 @@ public class DandriaBot extends TelegramLongPollingBot {
 		if (dataFromUser.size() == 5) {                                     
 			Multimap<String, String> keyValue = ArrayListMultimap.create(); 
 																			// store several values
-			keyValue.put("0", "хлеб");
+			keyValue.put("0", "хлеб");                       // This will be done in a format CSV in the next release.
 			keyValue.put("0", "хлеб белый");
 			keyValue.put("0", "батон");
 			keyValue.put("1", "масло");
@@ -224,22 +224,20 @@ public class DandriaBot extends TelegramLongPollingBot {
 			keyValue.put("59", "кефир");
 			Multimap<String, String> invertedKeyValue = Multimaps.invertFrom(keyValue,
 					ArrayListMultimap.<String, String>create());			
-			for (int i = 0; i <= dataFromUser.size() - 1; i++) { // ;)
-				String mp = invertedKeyValue.get(dataFromUser.get(i)).toString(); 
-																					// multimap, change to string "mp"
+			for (int i = 0; i <= dataFromUser.size() - 1; i++) { 
+				String mp = invertedKeyValue.get(dataFromUser.get(i)).toString(); //6 in ReadMe																	// multimap, change to string "mp"
 				String delBrack = mp.substring(1, mp.length() - 1); 
 				dataToDB.add(delBrack);
-				System.out.println(dataToDB);
 			}
 			dataFromUser.clear(); 
 			String query = "select recipe, id1, id2, id3, id4, id5, id6, id7, id8, id9, url from recipes_table";
 			List<String> list = null;
 			List<String> listid = null; 
 			try {
-				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_336c0c521e14f61?reconnect=true?useSSL=false&serverTimezone=" // Open connection
+				String url = "jdbc:mysql://us-cdbr-east-02.cleardb.com/heroku_336ce14f61?reconnect=true?useSSL=false&serverTimezone=" // Open connection
 						+ "UTC&useLegacyDatetimeCode=false?characterEncoding=utf8";
-				String name = "b7b59ae2c40612";
-				String password = "fd2f0afd";
+				String name = "b7b59ae0612";
+				String password = "fd2afd";
 				Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
 							try (Connection conn = DriverManager.getConnection(url, name, password)) {
 					try {
